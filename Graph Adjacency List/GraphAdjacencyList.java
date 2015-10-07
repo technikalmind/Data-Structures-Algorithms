@@ -20,6 +20,7 @@ public class GraphAdjacencyList
 				}
 				graph.put(split[0], list);
 				
+				
 				System.out.println(graph.values());
 			}
 			br.close();
