@@ -46,13 +46,13 @@ public class GraphAdjacencyList
 		return false;
 	}	
 	
-    public static void main(String[] args)
+	public static void main(String[] args)
     {
 		// Construct the graph from a text file
 		HashMap<String, LinkedList<String>> graph = CreateGraphFromFile("nodes.txt");
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Welcome to the Graph Adjacency Comparator");
+		System.out.println("Welcome to the Graph Adjacency Comparator!");
 		
 		while(true) {
 			try {
