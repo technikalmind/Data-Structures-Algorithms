@@ -4,15 +4,18 @@ import java.io.*;
 public class GraphAdjacencyList
 {
 	public static HashMap<String, LinkedList<String>> CreateGraphFromFile(String filename) {
+		// Initialize variables
 		HashMap<String, LinkedList<String>> graph = new HashMap<String, LinkedList<String>>();
+		LinkedList<String> list = new LinkedList<String>();
+		String node = "";
+		
+		// In case any issues arise with reading the file, catch them and print the message
 		try{
 			File f = new File(filename);
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
-			String node = "";
-			int lineNum = 0;
-			LinkedList<String> list = new LinkedList<String>();
 			
+			// Do things until EOF (null)
 			while( ((node = br.readLine()) != null) ) {
 				String[] split = node.split(",");
 				for(int i = 1; i < split.length; i++){
@@ -24,7 +27,6 @@ public class GraphAdjacencyList
 			}
 			br.close();
 			fr.close();
-			
 		} catch(FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch(IOException e) {
@@ -60,7 +62,12 @@ public class GraphAdjacencyList
 				System.out.print("Enter the second node: ");
 				String node2 = sc.nextLine().toUpperCase();
 				
-				System.out.println(IsConnected(node1, node2, graph));
+				if(IsConnected(node1, node2, graph)) {
+					System.out.println("Yes, they are directly connected");
+				} else {
+					System.out.println("No, they are not directly connected");
+				}
+				
 			} catch(NullPointerException e) {
 				System.out.println("Error: " + e.getMessage());
 			}
