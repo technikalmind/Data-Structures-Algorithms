@@ -47,7 +47,7 @@ public class GraphAdjacencyList
 	}	
 	
 	public static void main(String[] args)
-    {
+	{
 		// Construct the graph from a text file
 		HashMap<String, LinkedList<String>> graph = CreateGraphFromFile("nodes.txt");
 		Scanner sc = new Scanner(System.in);
