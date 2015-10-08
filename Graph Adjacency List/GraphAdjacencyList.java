@@ -3,10 +3,10 @@ import java.io.*;
 
 public class GraphAdjacencyList
 {
-	public static HashMap<String, LinkedList<String>> graph = new HashMap<String, LinkedList<String>>();
-	public static void ReadFromFile() {
+	public static HashMap<String, LinkedList<String>> CreateGraphFromFile(String filename) {
+		HashMap<String, LinkedList<String>> graph = new HashMap<String, LinkedList<String>>();
 		try{
-			File f = new File("nodes.txt");
+			File f = new File(filename);
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
 			String node = "";
@@ -20,8 +20,7 @@ public class GraphAdjacencyList
 				}
 				graph.put(split[0], list);
 				
-				
-				System.out.println(graph.values());
+				list = new LinkedList<String>();
 			}
 			br.close();
 			fr.close();
@@ -31,78 +30,40 @@ public class GraphAdjacencyList
 		} catch(IOException e) {
 			System.out.println(e.getMessage());
 		}
+		return graph;
 	}
 	
-	public static boolean IsConnected(String x, String y, HashMap<String, LinkedList<String>> g) {
-		LinkedList<String> result = g.get(x);
+	public static boolean IsConnected(String x, String y, HashMap<String, LinkedList<String>> graph) {
+		LinkedList<String> result = graph.get(x);
 		
 		for(int i = 0; i < result.size(); i++) {
-			if(result.get(i) == y) {
+			if(result.get(i).equals(y)) {
 				return true;
 			}
 		}
-		
 		return false;
 	}	
 	
     public static void main(String[] args)
     {
-		/*
-		// Temporary until ReadFromFile() can be constructed
-		LinkedList<String> node_A = new LinkedList<String>();
-		LinkedList<String> node_B = new LinkedList<String>();
-		LinkedList<String> node_C = new LinkedList<String>();
-		LinkedList<String> node_E = new LinkedList<String>();
-		LinkedList<String> node_F = new LinkedList<String>();
-		LinkedList<String> node_K = new LinkedList<String>();
+		// Construct the graph from a text file
+		HashMap<String, LinkedList<String>> graph = CreateGraphFromFile("nodes.txt");
+		Scanner sc = new Scanner(System.in);
 		
-		// A's connections
-		node_A.add("B");
-		node_A.add("E");
+		System.out.println("Welcome to the Graph Adjacency Comparator");
 		
-		// B's connections
-		node_B.add("C");
-		node_B.add("A");
-		node_B.add("F");
-		
-		// C's connections
-		node_C.add("K");
-		node_C.add("B");
-		
-		// E's connections
-		node_E.add("A");
-		node_E.add("F");
-		
-		// F's connections
-		node_F.add("E");
-		node_F.add("K");
-		node_F.add("B");
-		
-		// K's connections
-		node_K.add("F");
-		node_K.add("C");
-		
-		/////////////////////
-		// CONSTRUCT GRAPH //
-		/////////////////////
-		HashMap<String, LinkedList<String>> graph = new HashMap<String, LinkedList<String>>();
-		graph.put("A", node_A);
-		graph.put("B", node_B);
-		graph.put("C", node_C);
-		graph.put("E", node_E);
-		graph.put("F", node_F);
-		graph.put("K", node_K);
-		
-		
-		System.out.println(IsConnected("E", "F", graph)); // True
-		System.out.println(IsConnected("A", "F", graph)); // False
-		System.out.println();
-		System.out.println(IsConnected("K", "C", graph));
-		*/
-		ReadFromFile();
-		System.out.println(IsConnected("E", "F", graph)); // True
-		System.out.println(IsConnected("A", "F", graph)); // False
-		
-		System.out.println(graph.keySet());
+		while(true) {
+			try {
+				System.out.print("Enter the first node: ");
+				String node1 = sc.nextLine().toUpperCase();
+				
+				System.out.print("Enter the second node: ");
+				String node2 = sc.nextLine().toUpperCase();
+				
+				System.out.println(IsConnected(node1, node2, graph));
+			} catch(NullPointerException e) {
+				System.out.println("Error: " + e.getMessage());
+			}
+		}
 	}
 }
