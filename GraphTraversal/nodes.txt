@@ -1,0 +1,9 @@
+A,B,X
+B,A
+C,Y
+X,A,N,Y
+Y,C,Q,X,Z
+Z,Y
+N,M,X
+M,N
+Q,Y
