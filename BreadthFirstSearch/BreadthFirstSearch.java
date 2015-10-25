@@ -65,8 +65,6 @@ public class BreadthFirstSearch
 			String n = q.remove();
 			LinkedList<String> child = null;
 			
-			// System.out.println("[ " + n + " ]");
-			
 			if(!visited.contains(n)) {
 				child = graph.get(n);
 				System.out.print(n + "  ");
@@ -76,9 +74,10 @@ public class BreadthFirstSearch
 			visited.add(n);
 		}
 		
-		//System.out.println();
+		System.out.println();
 		//System.out.println("Graph neighbors: " + graph.get(node));
 	}
+
 	
 	public static void main(String[] args)
 	{
@@ -86,26 +85,18 @@ public class BreadthFirstSearch
 		HashMap<String, LinkedList<String>> graph = CreateGraphFromFile("nodes.txt");
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Welcome to the Graph Adjacency Comparator!");
+		System.out.println("Welcome to the Breadth-First Search tool!");
 		
-		Traverse("B", graph);
-		/* while(true) {
+		while(true) {
 			try {
-				System.out.print("Enter the first node: ");
-				String node1 = sc.nextLine().toUpperCase();
+				System.out.print("Enter the starting node: ");
+				String node = sc.nextLine().toUpperCase();
 				
-				System.out.print("Enter the second node: ");
-				String node2 = sc.nextLine().toUpperCase();
-				
-				if(IsConnected(node1, node2, graph)) {
-					System.out.println("Yes, they are directly connected");
-				} else {
-					System.out.println("No, they are not directly connected");
-				}
+				Traverse(node, graph);
 				
 			} catch(NullPointerException e) {
 				System.out.println("Error: " + e.getMessage());
 			}
-		} */
+		}
 	}
 }
