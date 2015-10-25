@@ -35,17 +35,6 @@ public class BreadthFirstSearch
 		return graph;
 	}
 	
-	public static boolean IsConnected(String x, String y, HashMap<String, LinkedList<String>> graph) {
-		LinkedList<String> result = graph.get(x);
-		
-		for(int i = 0; i < result.size(); i++) {
-			if(result.get(i).equals(y)) {
-				return true;
-			}
-		}
-		return false;
-	}	
-	
 	public static void Traverse(String node, HashMap<String, LinkedList<String>> graph) {
 		Queue<String> q = new LinkedList<String>();
 		LinkedList<String> neighbors = new LinkedList<String>();
