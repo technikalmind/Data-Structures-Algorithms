@@ -10,7 +10,7 @@ public class BreadthFirstSearch
 		String node = "";
 		
 		// In case any issues arise with reading the file, catch them and print the message
-		try{
+		try {
 			File f = new File(filename);
 			FileReader fr = new FileReader(f);
 			BufferedReader br = new BufferedReader(fr);
@@ -70,17 +70,12 @@ public class BreadthFirstSearch
 				System.out.print(n + "  ");
 				q.addAll(child);
 			}
-			
 			visited.add(n);
 		}
-		
 		System.out.println();
-		//System.out.println("Graph neighbors: " + graph.get(node));
 	}
-
 	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		// Construct the graph from a text file
 		HashMap<String, LinkedList<String>> graph = CreateGraphFromFile("nodes.txt");
 		Scanner sc = new Scanner(System.in);
@@ -93,7 +88,6 @@ public class BreadthFirstSearch
 				String node = sc.nextLine().toUpperCase();
 				
 				Traverse(node, graph);
-				
 			} catch(NullPointerException e) {
 				System.out.println("Error: " + e.getMessage());
 			}
